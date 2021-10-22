@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 
-// Pages
+// Services
 import '../services/navigation_service.dart';
+import '../services/media_service.dart';
+import '../services/cloud_storage_service.dart';
+import '../services/database_service.dart';
 
 class SplashPage extends StatefulWidget {
   final VoidCallback onInitializationComplete;
@@ -25,9 +28,12 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    _setup().then(
-      (_) => widget.onInitializationComplete(),
-    );
+
+    Future.delayed(Duration(seconds: 2)).then((_) {
+      _setup().then(
+        (_) => widget.onInitializationComplete(),
+      );
+    });
   }
 
   @override
@@ -65,6 +71,18 @@ class _SplashPageState extends State<SplashPage> {
   void _registerServices() {
     GetIt.instance.registerSingleton<NavigationService>(
       NavigationService(),
+    );
+
+    GetIt.instance.registerSingleton<MediaService>(
+      MediaService(),
+    );
+
+    GetIt.instance.registerSingleton<CloudStorageService>(
+      CloudStorageService(),
+    );
+
+    GetIt.instance.registerSingleton<DatabaseService>(
+      DatabaseService(),
     );
   }
 }
