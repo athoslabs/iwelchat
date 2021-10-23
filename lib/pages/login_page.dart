@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Widgets
 import '../widgets/custom_input_fields.dart';
+import '../widgets/rounded_button.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -38,7 +39,18 @@ class _LoginPageState extends State<LoginPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             _pageTitle(),
+            SizedBox(
+              height: _deviceHeight * 0.04,
+            ),
             _loginForm(),
+            SizedBox(
+              height: _deviceHeight * 0.05,
+            ),
+            _loginButton(),
+            SizedBox(
+              height: _deviceHeight * 0.02,
+            ),
+            _registerAccountLink(),
           ],
         ),
       ),
@@ -78,6 +90,26 @@ class _LoginPageState extends State<LoginPage> {
                 hintText: "Password",
                 obscureText: true),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _loginButton() {
+    return RoundedButton(
+        name: "Login",
+        height: _deviceHeight * 0.065,
+        width: _deviceWidth * 0.65,
+        onPressed: () {});
+  }
+
+  Widget _registerAccountLink() {
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        child: Text(
+          'Don\'t have an account?',
+          style: TextStyle(color: Colors.blueAccent),
         ),
       ),
     );
